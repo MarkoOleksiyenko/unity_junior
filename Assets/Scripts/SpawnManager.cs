@@ -8,18 +8,22 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject HoleObject;
     public GameObject CropObject;
+    public List<GameObject> players;
     private List<int> spotToOccupy  = Enumerable.Range(0, 100).ToList();
     private float HoleSpawnRate = 3.0f;
     private float CropSpawnRate = 2.0f;
+
+    public bool gameOver = false;
     // Start is called before the first frame update
     void Start()
     {
+        Instantiate(players[0], new Vector3(Random.Range(0.2f, 9.8f), 0, Random.Range(0.2f, 9.8f)), players[0].transform.rotation);
         StartCoroutine(SpawnHole());
         StartCoroutine(SpawnCrop());
     }
 
     IEnumerator SpawnHole() {
-        while (true) {
+        while (!gameOver) {
             yield return new WaitForSeconds(HoleSpawnRate);
             int spawnPosition = Random.Range(0, spotToOccupy.Count);
             // spawn hole in the position
@@ -30,7 +34,7 @@ public class SpawnManager : MonoBehaviour
     }
 
     IEnumerator SpawnCrop() {
-        while (true) {
+        while (!gameOver) {
             yield return new WaitForSeconds(CropSpawnRate);
             int spawnPosition = Random.Range(0, spotToOccupy.Count);
             Instantiate(CropObject, new Vector3(0.5f + GetPosX(spawnPosition), 0, 0.5f + GetPosY(spawnPosition)), HoleObject.transform.rotation);
