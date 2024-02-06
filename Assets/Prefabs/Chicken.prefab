@@ -1520,7 +1520,7 @@ GameObject:
   - component: {fileID: 5090457988812447748}
   - component: {fileID: 4161203612785237639}
   - component: {fileID: 4078973786207438951}
-  - component: {fileID: 4143049992667806874}
+  - component: {fileID: 1718432530678734176}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Chicken
@@ -1574,7 +1574,7 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4143049992667806874
+--- !u!114 &1718432530678734176
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1583,9 +1583,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5090457988812447747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4e8298e13352884ba81e3054bf13edf, type: 3}
+  m_Script: {fileID: 11500000, guid: 84a1b4014ffd93a4dac12d02ef5f3695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 6
 --- !u!1 &5090457988836289759
 GameObject:
   m_ObjectHideFlags: 0
