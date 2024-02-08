@@ -17,7 +17,9 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(players[0], new Vector3(Random.Range(0.2f, 9.8f), 0, Random.Range(0.2f, 9.8f)), players[0].transform.rotation);
+        Debug.Log("data manager: " + DataManager.Instance.selectedPlayer);
+        int playerIndex = GetPrefabIndex(DataManager.Instance.selectedPlayer);
+        Instantiate(players[playerIndex], new Vector3(Random.Range(0.2f, 9.8f), 0, Random.Range(0.2f, 9.8f)), players[0].transform.rotation);
         StartCoroutine(SpawnHole());
         StartCoroutine(SpawnCrop());
     }
@@ -52,5 +54,15 @@ public class SpawnManager : MonoBehaviour
 
     private int GetPosY(int spawnPosition) {
         return spotToOccupy[spawnPosition] % 10;
+    }
+
+    private int GetPrefabIndex(string tag) {
+        return tag switch
+        {
+            "Chicken" => 0,
+            "Sheep" => 1,
+            "Cow" => 2,
+            _ => 0,
+        };
     }
 }

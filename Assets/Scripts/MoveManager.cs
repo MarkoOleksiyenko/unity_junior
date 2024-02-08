@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,12 +9,22 @@ public class MoveManager : MonoBehaviour
     private float highX = 9.8f;
     private float lowZ = 0.2f;
     private float highZ = 9.8f;
-    private float speed = 5.0f;
+    protected float speed = 5.0f;
     void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+        Debug.Log("Used speed: " + speed);
         Vector3 newPosition = gameObject.transform.position + new Vector3(horizontal * Time.deltaTime * speed, 0, vertical * Time.deltaTime * speed);
+        
+        Vector3 movementDirection = new(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        Vector3 realDirection = Camera.main.transform.TransformDirection(movementDirection);
+        if(realDirection.magnitude > 0.1f)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(realDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10);
+        }
+
         MovementBoundaries(newPosition);
     }
 

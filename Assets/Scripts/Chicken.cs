@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class Chicken : MoveManager
 {
-    public float speed = 6.0f;
+    private void Awake() {
+        speed = 6.0f;
+    }
 }
