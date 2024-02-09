@@ -157,7 +157,7 @@ MonoBehaviour:
   players:
   - {fileID: 5090457988812447747, guid: f9b09a0752626f541aa126a1b443e54a, type: 3}
   - {fileID: 1330551747232657933, guid: 31f00833b6af90642b01702dd8e2d5f0, type: 3}
-  - {fileID: 5312888051214389163, guid: b4d72d8095eb5ff41ae6d857272f20f3, type: 3}
+  - {fileID: 7914826644491203246, guid: ed2abc84cdb7d2e4ea498927675c2756, type: 3}
   gameOver: 0
 --- !u!4 &45740627
 Transform:

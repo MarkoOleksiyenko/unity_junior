@@ -10,13 +10,22 @@ public class MoveManager : MonoBehaviour
     private float lowZ = 0.2f;
     private float highZ = 9.8f;
     protected float speed = 5.0f;
+
+    public ParticleSystem dirt;
+
     void Update()
     {
+        var emission = dirt.emission;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        Debug.Log("Used speed: " + speed);
         Vector3 newPosition = gameObject.transform.position + new Vector3(horizontal * Time.deltaTime * speed, 0, vertical * Time.deltaTime * speed);
-        
+        if (horizontal != 0 || vertical != 0) {
+            Debug.Log("Moving with horizontal " + horizontal + "and vertical " + vertical);
+            emission.enabled = true;
+        } else {
+            Debug.Log("Standing with horizontal " + horizontal + "and vertical " + vertical);
+            emission.enabled = false;
+        }
         Vector3 movementDirection = new(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         Vector3 realDirection = Camera.main.transform.TransformDirection(movementDirection);
         if(realDirection.magnitude > 0.1f)
@@ -24,7 +33,6 @@ public class MoveManager : MonoBehaviour
             Quaternion newRotation = Quaternion.LookRotation(realDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10);
         }
-
         MovementBoundaries(newPosition);
     }
 
